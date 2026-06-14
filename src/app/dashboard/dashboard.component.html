@@ -1,73 +1,71 @@
 <div class="container mt-4">
-
-  <!-- Row 1 -->
-  <div class="row mb-3">
-    <div class="col-md-6">
-
-      <div class="d-flex gap-2 align-items-center">
-
-  <select
-    class="form-select"
-    style="width: 200px;"
-    [(ngModel)]="selectedDevice">
-
-    <option value="" disabled selected>
-      Choose Device
-    </option>
-
-    <option
-      *ngFor="let device of devices"
-      [value]="device">
-
-      {{ device }}
-
-    </option>
-
-  </select>
-
-  <button
-    type="button"
-    class="btn btn-primary"
-    (click)="selectDevice(selectedDevice)">
-
-    Submit
-
-  </button>
-
-</div>
+  <div class="row mb-4">
+    <div class="col-12 col-md-6 d-flex gap-2">
+      <select class="form-select" [(ngModel)]="selectedDevice">
+        <option value="" disabled selected>Choose Device</option>
+        <option *ngFor="let device of devices" [value]="device">{{ device }}</option>
+      </select>
+      <button class="btn btn-primary" (click)="selectDevice(selectedDevice)">Submit</button>
     </div>
   </div>
 
-  <!-- Row 2 -->
-  <div class="row mb-3">
-
-    <div class="dashboard">
-  <div class="chart-card">
-    <h3 class="chart-title">Parts per Minute</h3>
-    <div class="chart-container" #chartContainer></div>
-  </div>
-</div>
-
-    <div class="col-md-6">
-      <div class="p-3 text-white bg-primary">
-        3
+  <div class="row mb-4" *ngIf="chartData.length > 0">
+    <!---Parts per min -->
+    <div class="col-12 col-md-6 mb-3 mb-md-0">
+              <h5 class="card-title mb-3">Parts Per Min</h5>
+      <div class="card shadow-sm p-3">
+        <div #chartContainer></div>
       </div>
     </div>
-
-  </div> 
-  </div>
-  
-
-  <!-- Row 3 -->
-   <div class="row">
-
-    <div class="col-md-6">
-      <div class="p-3 bg-warning">
-        4
+    <!-- parts produced -->
+    <div class="col-12 col-md-6" *ngIf="chartData.length > 0">
+              <h5 class="card-title mb-3">Parts Produced</h5>
+      <div class="card shadow-sm p-3">
+        <div #partsProducedContainer></div>
       </div>
     </div>
-
   </div>
-
-
-
+  <!--   Progress bar  -->
+  <div class="row mb-4" *ngIf="orderVal !== null && order !== null">
+    <div class="col-12">
+      <span>
+        {{ order.productionState | number }} /
+        {{ order.productionTarget | number }} 
+      </span>
+      <div class="card shadow-sm p-3">
+        <h5 class="card-title mb-3">Order Progress</h5>
+        <div class="progress" style="height: 20px;">
+          <div class="progress-bar" role="progressbar" [style.width.%]="orderVal">
+            {{ orderVal | number:'1.0-0' }}%
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--  Interrupts table-->
+  <div class="row" *ngIf="interrupts && interrupts.length > 0">
+    <div class="col-12">
+      <div class="card shadow-sm p-3">
+        <h5 class="card-title mb-3">Production Interrupts</h5>
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0">
+            <thead class="table-light">
+              <tr>
+                <th>Time</th>
+                <th>Device ID</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let i of interrupts">
+                <td>{{ i.time | date:'HH:mm:ss' }}</td>
+                <td>{{i.device}}</td>
+                <td><app-status-badge [status]="i.status"></app-status-badge></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
