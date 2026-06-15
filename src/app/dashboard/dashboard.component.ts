@@ -65,7 +65,7 @@ export class DashboardComponent implements OnInit {
 
     this.startMonitoring(device);
   }
-
+  // Method for monitoring data
   startMonitoring(deviceId: string) {
     this.eventService.connect(deviceId).subscribe((data: any) => {
       if (!data) return;
@@ -81,7 +81,7 @@ export class DashboardComponent implements OnInit {
               status: currentStatus 
             },
             ...this.interrupts
-          ].slice(0, 10); // it is to keep 10 records only
+          ].slice(0, 10); 
         }
       }
       this.lastStatus = currentStatus;
