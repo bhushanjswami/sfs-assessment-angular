@@ -11,24 +11,24 @@ import { catchError, Observable, throwError } from 'rxjs';
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  constructor() { }
 
   // Intercept HTTP requests and handle errors
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-     return next.handle(request).pipe(
+    return next.handle(request).pipe(
 
-    catchError((error: HttpErrorResponse) => {
+      catchError((error: HttpErrorResponse) => {
 
-      if (error.status === 404) {
-        alert('Resource not found');
-      }
+        if (error.status === 404) {
+          alert('Resource not found');
+        }
 
-      if (error.status === 500) {
-        alert('Server error');
-      }
+        if (error.status === 500) {
+          alert('Server error');
+        }
 
-      return throwError(() => error);
-    })
-  );
+        return throwError(() => error);
+      })
+    );
   }
 }

@@ -7,14 +7,14 @@ import { ConfigService } from './config.service';
   providedIn: 'root'
 })
 export class EventService {
-  constructor(private configService:ConfigService){}
-connect(deviceId: string): Observable<any> {
+  constructor(private configService: ConfigService) { }
+  connect(deviceId: string): Observable<any> {
 
     return new Observable(observer => {
-     const endpoint = this.configService.getEndpoint('events'); // Returns: "/order/{orderId}"
-  
-  // Replace the placeholder {orderId} with the actual ID
-  const url = `${environment.apiBaseUrl}${endpoint.replace('{deviceId}', deviceId)}`;
+      const endpoint = this.configService.getEndpoint('events'); // Returns: "/order/{orderId}"
+
+      // Replace the placeholder {orderId} with the actual ID
+      const url = `${environment.apiBaseUrl}${endpoint.replace('{deviceId}', deviceId)}`;
 
       const source = new EventSource(url);
       source.onmessage = event => {

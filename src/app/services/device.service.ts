@@ -8,10 +8,10 @@ import { environment } from 'src/environments/environment';
 })
 export class DeviceService {
 
-   constructor(
+  constructor(
     private http: HttpClient,
     private configService: ConfigService
-  ) {}
+  ) { }
 
   // Method to fetch devices from the API
   getDevices() {
