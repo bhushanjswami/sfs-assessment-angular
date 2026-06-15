@@ -91,7 +91,7 @@ export class DashboardComponent implements OnInit {
       if (!data) return;
       const currentStatus = data.status;
       const interuppt_time = data.timestamp ? new Date(data.timestamp) : new Date();
-      // 1. Interrupt State Change Tracking Logic
+      //Interrupt State Change Tracking Logic
       if (this.lastStatus !== null && this.lastStatus !== currentStatus) {
         if (currentStatus !== 'running') {
           this.interrupts = [
@@ -106,13 +106,13 @@ export class DashboardComponent implements OnInit {
       }
       this.lastStatus = currentStatus;
 
-      // 2. Data processing guard for Charts and Progress metrics
+      // Data processing guard for Charts and Progress metrics
       if (currentStatus !== 'running') {
         this.cdr.detectChanges();
         return; 
       }
 
-      // 3. Process Metrics and Active Graphs
+      // Process Metrics and Active Graphs
       const lastParts = this.chartData.length > 0 ? this.chartData[this.chartData.length - 1].partsProduced : 0;
       
       this.chartData.push({
