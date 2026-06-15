@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AppConfig } from 'src/models/config';
 
@@ -9,9 +8,9 @@ import { AppConfig } from 'src/models/config';
 })
 export class ConfigService {
 
-   private config!: AppConfig;
+  private config!: AppConfig;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   // Method to load configuration from the API
   loadConfig() {
