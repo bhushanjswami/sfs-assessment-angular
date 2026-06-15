@@ -8,18 +8,17 @@
       <button class="btn btn-primary" (click)="selectDevice(selectedDevice)">Submit</button>
     </div>
   </div>
-
   <div class="row mb-4" *ngIf="chartData.length > 0">
     <!---Parts per min -->
     <div class="col-12 col-md-6 mb-3 mb-md-0">
-              <h5 class="card-title mb-3">Parts Per Min</h5>
+      <h5 class="card-title mb-3">Parts Per Min</h5>
       <div class="card shadow-sm p-3">
         <div #chartContainer></div>
       </div>
     </div>
     <!-- parts produced -->
     <div class="col-12 col-md-6" *ngIf="chartData.length > 0">
-              <h5 class="card-title mb-3">Parts Produced</h5>
+      <h5 class="card-title mb-3">Parts Produced</h5>
       <div class="card shadow-sm p-3">
         <div #partsProducedContainer></div>
       </div>
@@ -30,7 +29,7 @@
     <div class="col-12">
       <span>
         {{ order.productionState | number }} /
-        {{ order.productionTarget | number }} 
+        {{ order.productionTarget | number }}
       </span>
       <div class="card shadow-sm p-3">
         <h5 class="card-title mb-3">Order Progress</h5>
@@ -42,7 +41,7 @@
       </div>
     </div>
   </div>
-<!--  Interrupts table-->
+  <!--  Interrupts table-->
   <div class="row" *ngIf="interrupts && interrupts.length > 0">
     <div class="col-12">
       <div class="card shadow-sm p-3">
