@@ -24,7 +24,6 @@ export class DashboardComponent implements OnInit {
   order: any = null;
   selectedDevice: string = "";
   orderVal: number | null = null;
-  
   private lastOrderId: string | null = null;
   private lastStatus: string | null = null;
 
@@ -53,8 +52,29 @@ export class DashboardComponent implements OnInit {
   selectDevice(device: string) {
     if (!device) return;
 
-    if (this.chartContainer?.nativeElement) d3.select(this.chartContainer.nativeElement).html('');
-    if (this.partsProducedContainer?.nativeElement) d3.select(this.partsProducedContainer.nativeElement).html('');
+    // Stop previous monitoring
+  // Clear charts
+  if (this.chartContainer?.nativeElement) {
+    d3.select(this.chartContainer.nativeElement).html('');
+  }
+
+  if (this.partsProducedContainer?.nativeElement) {
+    d3.select(this.partsProducedContainer.nativeElement).html('');
+  }
+
+  // Clear all data
+  this.chartData = [];
+  this.interrupts = [];
+  this.order = null;
+  this.orderVal = null;
+  this.lastOrderId = null;
+  this.lastStatus = null;
+
+  // Reset selected device
+  this.selectedDevice = device;
+
+  // Refresh UI immediately
+  this.cdr.detectChanges();
 
     this.chartData = [];
     this.interrupts = [];
