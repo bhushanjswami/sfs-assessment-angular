@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   template: `
     <span [ngClass]="getBadgeClass()">
-      {{ status || 'Unknown' }}
+      {{ status }}
     </span>
   `,
   styles: [`
