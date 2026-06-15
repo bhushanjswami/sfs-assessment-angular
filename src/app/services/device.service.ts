@@ -18,7 +18,6 @@ export class DeviceService {
 
     const endpoint =
       this.configService.getEndpoint('devices');
-    console.log('Fetching devices from endpoint:', endpoint);
     return this.http.get(
       `${environment.apiBaseUrl}${endpoint}`
     );

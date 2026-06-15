@@ -11,16 +11,12 @@ export class EventService {
 connect(deviceId: string): Observable<any> {
 
     return new Observable(observer => {
-      //const endpoint = this.configService.getEndpoint('events');
-     // console.log('Connecting to event source with endpoint:', endpoint, 'and deviceId:', deviceId);
      const endpoint = this.configService.getEndpoint('events'); // Returns: "/order/{orderId}"
   
   // Replace the placeholder {orderId} with the actual ID
   const url = `${environment.apiBaseUrl}${endpoint.replace('{deviceId}', deviceId)}`;
-        console.log('Connecting to event source at:', url);
 
       const source = new EventSource(url);
-      console.log('Connecting to event source at:', url);
       source.onmessage = event => {
 
         observer.next(

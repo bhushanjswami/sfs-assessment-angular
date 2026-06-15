@@ -17,7 +17,6 @@ getOrder(orderId: string) {
   // Replace the placeholder {orderId} with the actual ID
   const url = `${environment.apiBaseUrl}${endpoint.replace('{orderId}', orderId)}`;
 
-  console.log('Fetching order details from:', url);
   return this.http.get(url);
 }
 
