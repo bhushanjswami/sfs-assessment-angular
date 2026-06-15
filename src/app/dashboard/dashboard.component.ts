@@ -73,7 +73,6 @@ export class DashboardComponent implements OnInit {
       const interuppt_time = data.timestamp ? new Date(data.timestamp) : new Date();
       // 1. Interrupt State Change Tracking Logic
       if (this.lastStatus !== null && this.lastStatus !== currentStatus) {
-        console.log('dataaaaa',data)
         if (currentStatus !== 'running') {
           this.interrupts = [
             { 
