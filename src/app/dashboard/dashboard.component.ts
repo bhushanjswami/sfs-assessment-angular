@@ -6,6 +6,9 @@ import { DeviceService } from '../services/device.service';
 import { EventService } from '../services/event.service';
 import { OrderService } from '../services/order.service';
 import { StatusBadgeComponent } from '../shared/status-badge/status-badge.component';
+import { ChartDataItem } from 'src/models/chartData';
+import { Device } from 'src/models/device';
+import { InterruptEvent } from 'src/models/interrupt';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,9 +21,9 @@ export class DashboardComponent implements OnInit {
   @ViewChild('chartContainer') chartContainer!: ElementRef;
   @ViewChild('partsProducedContainer') partsProducedContainer!: ElementRef;
 
-  devices: any = [];
-  chartData: any[] = [];
-  interrupts: any[] = [];
+  devices: Device[]= [];
+  chartData: ChartDataItem[] = [];
+  interrupts: InterruptEvent[] = [];
   order: any = null;
   selectedDevice = '';
   orderVal: number | null = null;
@@ -41,8 +44,8 @@ export class DashboardComponent implements OnInit {
   }
 
   // Method to load initial devices in dropdown
-  loadDevices() {
-    this.deviceService.getDevices().subscribe(res => {
+  loadDevices(): void {
+    this.deviceService.getDevices().subscribe((res:any) => {
       this.devices = res;
       this.cdr.detectChanges();
     });
@@ -149,7 +152,11 @@ export class DashboardComponent implements OnInit {
   }
 
   // Method to create chart 
-   createD3Chart(container: HTMLElement, dataKey: string, strokeColor: string, fillColor: string, paddingOffset: number) {
+   createD3Chart(container: HTMLElement | undefined, 
+    dataKey: keyof ChartDataItem,
+    strokeColor: string, 
+    fillColor: string, 
+    paddingOffset: number) {
     if (!container) return;
     container.innerHTML = '';
 

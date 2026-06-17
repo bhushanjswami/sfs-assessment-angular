@@ -1,5 +1,5 @@
-export interface Interrupt {
+export interface InterruptEvent {
   time: Date;
-  reason: string;
+  device: string;
   status: string;
 }

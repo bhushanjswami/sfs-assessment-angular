@@ -1,5 +1,6 @@
 export interface Order {
-  orderNumber: string;
-  productionTarget:string;
-  productionState: string;
+  id: string;
+  productionTarget: number;
+  productionState: number;
+  [key: string]: any;
 }
