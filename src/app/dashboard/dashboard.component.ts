@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
   order: any = null;
   selectedDevice = '';
   orderVal: number | null = null;
-  
+  status:string = 'Running';
   private lastOrderId: string | null = null;
   private lastStatus: string | null = null;
 

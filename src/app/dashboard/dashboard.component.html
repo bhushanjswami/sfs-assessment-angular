@@ -8,7 +8,13 @@
       <button class="btn btn-primary" (click)="selectDevice(selectedDevice)">Submit</button>
     </div>
   </div>
-
+  <div class="row mb-2" *ngIf="orderVal !== null && order !== null">
+  <div class="col-12">
+    <span class="badge bg-success fs-6">
+      Current Status: {{ status }}
+    </span>
+  </div>
+</div>
   <div class="row mb-4" *ngIf="chartData.length > 0">
     <!---Parts per min -->
     <div class="col-12 col-md-6 mb-3 mb-md-0">
