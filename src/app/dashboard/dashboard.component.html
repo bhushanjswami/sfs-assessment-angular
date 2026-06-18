@@ -58,7 +58,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let i of interrupts">
-                <td>{{ i.time | date:'HH:mm:ss' }}</td>
+                <td>{{ i.time | date:'dd/MM/yyyy HH:mm:ss' }}</td>
                 <td>{{i.device}}</td>
                 <td><app-status-badge [status]="i.status"></app-status-badge></td>
               </tr>
